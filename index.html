@@ -1,1 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Personal portfolio of Zhihao Chen — Computer Science undergraduate at NJUPT, interested in LLM Agents, AI Systems, and Deep Learning."
+  />
 
+  <title>Zhihao Chen | AI Systems & LLM Agents</title>
+
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-solid: #ffffff;
+      --text: #111827;
+      --muted: #667085;
+      --border: rgba(17, 24, 39, 0.09);
+      --primary: #2563eb;
+      --primary-soft: rgba(37, 99, 235, 0.10);
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      --max-width: 1120px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #090d14;
+        --surface: rgba(17, 24, 39, 0.72);
+        --surface-solid: #111827;
+        --text: #f3f4f6;
+        --muted: #9ca3af;
+        --border: rgba(255, 255, 255, 0.08);
+        --primary: #60a5fa;
+        --primary-soft: rgba(96, 165, 250, 0.12);
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at 15% -10%,
+          rgba(37, 99, 235, 0.14),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 90% 15%,
+          rgba(124, 58, 237, 0.10),
+          transparent 28%
+        ),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 750;
+      letter-spacing: -0.02em;
+      font-size: 1.05rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .hero {
+      min-height: 680px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 72px;
+      padding: 88px 0 64px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.86rem;
+      font-weight: 650;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero-description {
+      margin: 28px 0 0;
+      max-width: 700px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+
+    .hero-actions {
+      margin-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-weight: 650;
+      font-size: 0.94rem;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: transparent;
+    }
+
+    .button-secondary {
+      background: var(--surface);
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .avatar-shell {
+      width: min(340px, 78vw);
+      aspect-ratio: 1;
+      padding: 12px;
+      border-radius: 32%;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.18),
+          rgba(124, 58, 237, 0.10)
+        );
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transform: rotate(2deg);
+    }
+
+    .avatar-shell img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 29%;
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 34px;
+    }
+
+    .section-label {
+      color: var(--primary);
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 750;
+    }
+
+    .section-heading h2 {
+      margin: 8px 0 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      max-width: 720px;
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+    }
+
+    .panel {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .experience-meta {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.82rem;
+      background: var(--surface-solid);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 270px;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
+    }
+
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .project-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: var(--primary-soft);
+      font-size: 1.3rem;
+    }
+
+    .project-link {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 650;
+    }
+
+    .project-card h3 {
+      margin: 22px 0 8px;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .project-tags {
+      margin-top: auto;
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .skill-group {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+
+    .skill-group h3 {
+      margin: 0 0 12px;
+      font-size: 0.98rem;
+    }
+
+    .skill-group p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 36px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary-soft),
+          var(--surface)
+        );
+    }
+
+    .contact-card h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    .contact-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 34px 0 46px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding-top: 72px;
+      }
+
+      .hero-visual {
+        justify-content: flex-start;
+      }
+
+      .avatar-shell {
+        width: 220px;
+      }
+
+      .about-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .skills {
+        grid-template-columns: 1fr;
+      }
+
+      .panel,
+      .project-card,
+      .contact-card {
+        padding: 22px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#top">Zhihao Chen</a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <div class="container">
+      <header class="hero">
+        <div>
+          <div class="eyebrow">AI Systems · LLM Agents · Deep Learning</div>
+
+          <h1>
+            Hi, I'm
+            <span>Zhihao Chen.</span>
+          </h1>
+
+          <p class="hero-description">
+            Computer Science undergraduate at NJUPT and research intern at IAII.
+            I build practical AI systems around agent execution, evaluation,
+            secure tool use, and language models.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">
+              View Projects
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="https://github.com/zhihaochen67"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="avatar-shell">
+            <img
+              src="https://avatars.githubusercontent.com/u/200216193?v=4"
+              alt="Zhihao Chen"
+            />
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-label">About</div>
+          <h2>Building reliable AI systems.</h2>
+          <p>
+            My current interests sit at the intersection of LLM agents,
+            AI infrastructure, model evaluation, and practical software engineering.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="panel">
+            <h3>Computer Science @ NJUPT</h3>
+            <p>
+              Undergraduate student in Computer Science, with a focus on
+              data structures and algorithms, AI systems, deep learning,
+              and software engineering.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h3>Research & Engineering</h3>
+            <p>
+              I enjoy turning AI ideas into systems that can be tested,
+              measured, observed, and safely integrated with real tools.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-label">Experience</div>
+          <h2>Research experience.</h2>
+        </div>
+
+        <div class="panel">
+          <h3>Research Intern · IAII</h3>
+
+          <p>
+            Working in an embodied AI research group in Nanjing and gaining
+            hands-on exposure to AI research workflows, experimentation,
+            robotics-oriented systems, and engineering practice.
+          </p>
+
+          <div class="experience-meta">
+            <span class="chip">Embodied AI</span>
+            <span class="chip">Research Engineering</span>
+            <span class="chip">Nanjing, China</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-label">Featured Projects</div>
+          <h2>Selected work.</h2>
+          <p>
+            Projects spanning coding agents, evaluation infrastructure,
+            secure tool execution, language-model implementation,
+            and AI-native desktop systems.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+
+          <a
+            class="project-card"
+            href="https://github.com/zhihaochen67/repo-doctor"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="project-top">
+              <div class="project-icon">🩺</div>
+              <span class="project-link">GitHub ↗</span>
+            </div>
+
+            <h3>Repo Doctor</h3>
+
+            <p>
+              AI-powered repository diagnosis and repair agent with deterministic
+              scanning, constrained patch generation, test-driven verification,
+              local rollback, and optional MCP-based tool execution.
+            </p>
+
+            <div class="project-tags">
+              <span class="chip">Python</span>
+              <span class="chip">LLM Agents</span>
+              <span class="chip">MCP</span>
+              <span class="chip">Testing</span>
+            </div>
+          </a>
+
+          <a
+            class="project-card"
+            href="https://github.com/zhihaochen67/AgentLab"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="project-top">
+              <div class="project-icon">🔬</div>
+              <span class="project-link">GitHub ↗</span>
+            </div>
+
+            <h3>AgentLab</h3>
+
+            <p>
+              Evaluation and observability platform for LLM agents with
+              reproducible benchmarks, structured traces, repeated trials,
+              experiment comparison, and LLM-as-a-Judge.
+            </p>
+
+            <div class="project-tags">
+              <span class="chip">Evaluation</span>
+              <span class="chip">Tracing</span>
+              <span class="chip">SQLite</span>
+              <span class="chip">LLM-as-a-Judge</span>
+            </div>
+          </a>
+
+          <a
+            class="project-card"
+            href="https://github.com/zhihaochen67/mcp-toolhub"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="project-top">
+              <div class="project-icon">🔧</div>
+              <span class="project-link">GitHub ↗</span>
+            </div>
+
+            <h3>MCP ToolHub</h3>
+
+            <p>
+              Security-focused MCP server with workspace isolation,
+              approval-gated execution, hardened filesystem and Git tools,
+              process containment, and structured audit logging.
+            </p>
+
+            <div class="project-tags">
+              <span class="chip">MCP</span>
+              <span class="chip">Security</span>
+              <span class="chip">Tool Calling</span>
+              <span class="chip">Python</span>
+            </div>
+          </a>
+
+          <a
+            class="project-card"
+            href="https://github.com/zhihaochen67/mini-gpt"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="project-top">
+              <div class="project-icon">🧠</div>
+              <span class="project-link">GitHub ↗</span>
+            </div>
+
+            <h3>MiniGPT</h3>
+
+            <p>
+              97.5M-parameter decoder-only Transformer implemented from scratch
+              with PyTorch and trained on TinyStories, covering tokenization,
+              training, checkpointing, and autoregressive generation.
+            </p>
+
+            <div class="project-tags">
+              <span class="chip">PyTorch</span>
+              <span class="chip">Transformer</span>
+              <span class="chip">TinyStories</span>
+              <span class="chip">Deep Learning</span>
+            </div>
+          </a>
+
+          <a
+            class="project-card"
+            href="https://github.com/zhihaochen67/harness-core"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="project-top">
+              <div class="project-icon">🖥️</div>
+              <span class="project-link">GitHub ↗</span>
+            </div>
+
+            <h3>Harness Core</h3>
+
+            <p>
+              AI-native desktop command center integrating workspace-aware AI,
+              agent activity, terminal output, system tooling, execution state,
+              and desktop orchestration.
+            </p>
+
+            <div class="project-tags">
+              <span class="chip">Electron</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">AI Systems</span>
+              <span class="chip">Desktop</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-label">Tech Stack</div>
+          <h2>Tools I work with.</h2>
+        </div>
+
+        <div class="skills">
+          <div class="skill-group">
+            <h3>Languages</h3>
+            <p>Python · JavaScript · SQL</p>
+          </div>
+
+          <div class="skill-group">
+            <h3>AI / ML</h3>
+            <p>PyTorch · Transformers · LLM Agents · Agent Evaluation</p>
+          </div>
+
+          <div class="skill-group">
+            <h3>Agent Systems</h3>
+            <p>MCP · Tool Calling · LLM-as-a-Judge · Observability</p>
+          </div>
+
+          <div class="skill-group">
+            <h3>Engineering</h3>
+            <p>Git · SQLite · Electron · CLI · Testing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <div>
+            <h2>Let's connect.</h2>
+            <p>
+              Explore my projects and current work on GitHub.
+            </p>
+          </div>
+
+          <a
+            class="button button-primary"
+            href="https://github.com/zhihaochen67"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Zhihao Chen</span>
+      <span>Nanjing, China</span>
+    </div>
+  </footer>
+</body>
+</html>
