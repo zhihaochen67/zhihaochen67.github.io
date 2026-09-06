@@ -375,9 +375,62 @@
       gap: 7px;
     }
 
+    .project-card--featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+    }
+
+    .featured-body {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .featured-result {
+      margin: 14px 0 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .featured-result strong {
+      color: var(--primary);
+      font-weight: 650;
+    }
+
+    .featured-visual {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .featured-figure {
+      margin: 0;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+
+    .featured-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .featured-figure figcaption {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
     .skills {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
 
@@ -463,6 +516,17 @@
       .about-grid,
       .projects-grid {
         grid-template-columns: 1fr;
+      }
+
+      .project-card--featured {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+
+      .featured-figure {
+        max-width: 560px;
+        margin: 0 auto;
+        width: 100%;
       }
 
       .skills {
@@ -636,6 +700,55 @@
         <div class="projects-grid">
 
           <a
+            class="project-card project-card--featured"
+            href="https://github.com/zhihaochen67/socialnav-bench"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="featured-body">
+              <div class="project-top">
+                <div class="project-icon">🤖</div>
+                <span class="project-link">GitHub ↗</span>
+              </div>
+
+              <h3>SocialNav-Bench</h3>
+
+              <p>
+                Reproducible benchmark for socially-aware robot navigation with
+                predictive and space-time planning, robust continuous execution,
+                multi-pedestrian evaluation, local safety shielding, and
+                systematic failure analysis.
+              </p>
+
+              <p class="featured-result">
+                Shielded execution: collision rate
+                <strong>N=3: 18% → 0%</strong> ·
+                <strong>N=10: 43% → 7%</strong>
+              </p>
+
+              <div class="project-tags">
+                <span class="chip">Embodied AI</span>
+                <span class="chip">Path Planning</span>
+                <span class="chip">PyBullet</span>
+                <span class="chip">Benchmarking</span>
+              </div>
+            </div>
+
+            <div class="featured-visual">
+              <figure class="featured-figure">
+                <img
+                  src="assets/socialnav-benchmark.png"
+                  alt="Success and collision rates versus pedestrian density in SocialNav-Bench"
+                  loading="lazy"
+                />
+                <figcaption>
+                  Success &amp; collision rate vs. pedestrian density
+                </figcaption>
+              </figure>
+            </div>
+          </a>
+
+          <a
             class="project-card"
             href="https://github.com/zhihaochen67/repo-doctor"
             target="_blank"
@@ -686,34 +799,6 @@
               <span class="chip">Tracing</span>
               <span class="chip">SQLite</span>
               <span class="chip">LLM-as-a-Judge</span>
-            </div>
-          </a>
-
-          <a
-            class="project-card"
-            href="https://github.com/zhihaochen67/socialnav-bench"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div class="project-top">
-              <div class="project-icon">🤖</div>
-              <span class="project-link">GitHub ↗</span>
-            </div>
-
-            <h3>SocialNav-Bench</h3>
-
-            <p>
-              Reproducible benchmark for socially-aware robot navigation with
-              predictive and space-time planning, robust continuous execution,
-              multi-pedestrian evaluation, local safety shielding, and
-              systematic failure analysis.
-            </p>
-
-            <div class="project-tags">
-              <span class="chip">Embodied AI</span>
-              <span class="chip">Path Planning</span>
-              <span class="chip">PyBullet</span>
-              <span class="chip">Benchmarking</span>
             </div>
           </a>
 
@@ -844,12 +929,22 @@
 
           <div class="skill-group">
             <h3>AI / ML</h3>
-            <p>PyTorch · Transformers · LLM Agents · Agent Evaluation · Search / Retrieval · Embodied AI</p>
+            <p>PyTorch · Transformers · Deep Learning</p>
+          </div>
+
+          <div class="skill-group">
+            <h3>Search / Retrieval</h3>
+            <p>BM25 · Dense Retrieval · Hybrid Search · Reranking · FAISS</p>
           </div>
 
           <div class="skill-group">
             <h3>Agent Systems</h3>
-            <p>MCP · Tool Calling · LLM-as-a-Judge · Observability</p>
+            <p>MCP · Tool Calling · LLM-as-a-Judge · Agent Evaluation · Observability</p>
+          </div>
+
+          <div class="skill-group">
+            <h3>Embodied AI</h3>
+            <p>Social Navigation · Path Planning · Simulation</p>
           </div>
 
           <div class="skill-group">
