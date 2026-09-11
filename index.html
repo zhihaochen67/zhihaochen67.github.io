@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Personal portfolio of Zhihao Chen — Computer Science undergraduate at NJUPT, interested in AI Systems, LLM Agents, Search & Retrieval, and Embodied AI."
+    content="Personal portfolio of Zhihao Chen — Computer Science undergraduate at NJUPT building LLM agents, retrieval and evaluation systems, and embodied AI."
   />
+  <meta property="og:title" content="Zhihao Chen | AI Systems, Agents & Search" />
+  <meta
+    property="og:description"
+    content="CS undergraduate at NJUPT building LLM agent, retrieval, evaluation, and embodied AI systems."
+  />
+  <meta property="og:type" content="website" />
 
   <title>Zhihao Chen | AI Systems, Agents & Search</title>
 
@@ -58,16 +64,8 @@
         sans-serif;
       color: var(--text);
       background:
-        radial-gradient(
-          circle at 15% -10%,
-          rgba(37, 99, 235, 0.14),
-          transparent 34%
-        ),
-        radial-gradient(
-          circle at 90% 15%,
-          rgba(124, 58, 237, 0.10),
-          transparent 28%
-        ),
+        radial-gradient(circle at 15% -10%, rgba(37, 99, 235, 0.14), transparent 34%),
+        radial-gradient(circle at 90% 15%, rgba(124, 58, 237, 0.10), transparent 28%),
         var(--bg);
       line-height: 1.65;
     }
@@ -135,7 +133,8 @@
       padding: 88px 0 64px;
     }
 
-    .eyebrow {
+    .eyebrow,
+    .availability {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -145,6 +144,9 @@
       color: var(--primary);
       font-size: 0.86rem;
       font-weight: 650;
+    }
+
+    .eyebrow {
       margin-bottom: 20px;
     }
 
@@ -162,13 +164,19 @@
 
     .hero-description {
       margin: 28px 0 0;
-      max-width: 700px;
+      max-width: 720px;
       color: var(--muted);
       font-size: clamp(1.05rem, 2vw, 1.25rem);
     }
 
+    .availability {
+      margin-top: 20px;
+      background: transparent;
+      border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
+    }
+
     .hero-actions {
-      margin-top: 32px;
+      margin-top: 28px;
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -215,12 +223,7 @@
       aspect-ratio: 1;
       padding: 12px;
       border-radius: 32%;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(37, 99, 235, 0.18),
-          rgba(124, 58, 237, 0.10)
-        );
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(124, 58, 237, 0.10));
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       transform: rotate(2deg);
@@ -257,7 +260,7 @@
     }
 
     .section-heading p {
-      max-width: 720px;
+      max-width: 760px;
       margin: 12px 0 0;
       color: var(--muted);
     }
@@ -316,7 +319,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      min-height: 270px;
+      min-height: 282px;
       padding: 26px;
       border: 1px solid var(--border);
       border-radius: 20px;
@@ -367,65 +370,23 @@
       font-size: 0.95rem;
     }
 
+    .result {
+      margin-top: 12px;
+      color: var(--text) !important;
+      font-size: 0.88rem !important;
+      font-weight: 600;
+    }
+
+    .result strong {
+      color: var(--primary);
+    }
+
     .project-tags {
       margin-top: auto;
       padding-top: 24px;
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
-    }
-
-    .project-card--featured {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 40px;
-    }
-
-    .featured-body {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    .featured-result {
-      margin: 14px 0 0;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .featured-result strong {
-      color: var(--primary);
-      font-weight: 650;
-    }
-
-    .featured-visual {
-      min-width: 0;
-      display: flex;
-      align-items: center;
-    }
-
-    .featured-figure {
-      margin: 0;
-      width: 100%;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: #ffffff;
-    }
-
-    .featured-figure img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .featured-figure figcaption {
-      margin-top: 10px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #4b5563;
     }
 
     .skills {
@@ -443,13 +404,14 @@
 
     .skill-group h3 {
       margin: 0 0 12px;
-      font-size: 0.98rem;
+      font-size: 1.05rem;
     }
 
     .skill-group p {
       margin: 0;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      line-height: 1.55;
     }
 
     .contact-card {
@@ -460,12 +422,7 @@
       padding: 36px;
       border-radius: 24px;
       border: 1px solid var(--border);
-      background:
-        linear-gradient(
-          135deg,
-          var(--primary-soft),
-          var(--surface)
-        );
+      background: linear-gradient(135deg, var(--primary-soft), var(--surface));
     }
 
     .contact-card h2 {
@@ -477,6 +434,7 @@
     .contact-card p {
       margin: 10px 0 0;
       color: var(--muted);
+      max-width: 650px;
     }
 
     footer {
@@ -516,17 +474,6 @@
       .about-grid,
       .projects-grid {
         grid-template-columns: 1fr;
-      }
-
-      .project-card--featured {
-        grid-template-columns: 1fr;
-        gap: 26px;
-      }
-
-      .featured-figure {
-        max-width: 560px;
-        margin: 0 auto;
-        width: 100%;
       }
 
       .skills {
@@ -573,7 +520,6 @@
   <nav>
     <div class="container nav-inner">
       <a class="brand" href="#top">Zhihao Chen</a>
-
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
@@ -597,15 +543,14 @@
 
           <p class="hero-description">
             Computer Science undergraduate at NJUPT and research intern at IAII.
-            I build practical AI systems across agent execution, search and retrieval,
-            evaluation, and embodied AI.
+            I build LLM agent, retrieval, and evaluation systems, with additional
+            work in embodied AI.
           </p>
 
-          <div class="hero-actions">
-            <a class="button button-primary" href="#projects">
-              View Projects
-            </a>
+          <div class="availability">Open to AI/ML engineering internship opportunities</div>
 
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">View Projects</a>
             <a
               class="button button-secondary"
               href="https://github.com/zhihaochen67"
@@ -634,9 +579,8 @@
           <div class="section-label">About</div>
           <h2>Building reliable AI systems.</h2>
           <p>
-            My current interests sit at the intersection of LLM agents,
-            search and retrieval, AI infrastructure, embodied intelligence,
-            and practical software engineering.
+            My work centers on LLM agents, search and retrieval, evaluation infrastructure,
+            and practical AI engineering, with additional experience in embodied intelligence.
           </p>
         </div>
 
@@ -645,17 +589,15 @@
             <h3>Computer Science @ NJUPT</h3>
             <p>
               Undergraduate student in Computer Science, building foundations across
-              data structures and algorithms, AI systems, deep learning,
-              and software engineering.
+              data structures and algorithms, AI systems, deep learning, and software engineering.
             </p>
           </div>
 
           <div class="panel">
             <h3>Year-long Research Internship @ IAII</h3>
             <p>
-              Currently completing a year-long research internship at IAII in Nanjing,
-              with experience in an embodied AI research environment, experimentation,
-              robotics-oriented systems, and research engineering practice.
+              Research intern in an embodied AI group in Nanjing, working on
+              robotics-oriented experimentation, evaluation, and research engineering.
             </p>
           </div>
         </div>
@@ -671,16 +613,15 @@
 
         <div class="panel">
           <h3>Research Intern · IAII</h3>
-
           <p>
-            Working in an embodied AI research group in Nanjing, with exposure to
-            AI research workflows, experimentation, robotics-oriented systems,
-            and engineering practice.
+            Working in an embodied AI research group on social navigation,
+            robotic manipulation, experimentation, evaluation, and research engineering.
           </p>
 
           <div class="experience-meta">
             <span class="chip">Embodied AI</span>
-            <span class="chip">AI Research</span>
+            <span class="chip">Social Navigation</span>
+            <span class="chip">Robotic Manipulation</span>
             <span class="chip">Nanjing, China</span>
           </div>
         </div>
@@ -693,53 +634,23 @@
           <div class="section-label">Featured Projects</div>
           <h2>Selected work.</h2>
           <p>
-            Projects spanning coding agents, search and retrieval, evaluation infrastructure,
-            secure tool execution, embodied AI, language-model implementation,
-            and AI-native systems.
+            Eight projects spanning retrieval, agent evaluation, secure tool execution,
+            AI coding systems, desktop orchestration, embodied AI, and model implementation.
           </p>
         </div>
 
         <div class="projects-grid">
-          <a
-            class="project-card"
-            href="https://github.com/zhihaochen67/repo-doctor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div class="project-top">
-              <div class="project-icon">🩺</div>
-              <span class="project-link">GitHub ↗</span>
-            </div>
-            <h3>Repo Doctor</h3>
-            <p>
-              AI-powered repository diagnosis and repair agent with deterministic
-              scanning, constrained patch generation, test-driven verification,
-              local rollback, and optional MCP-based tool execution.
-            </p>
-            <div class="project-tags">
-              <span class="chip">Python</span>
-              <span class="chip">LLM Agents</span>
-              <span class="chip">MCP</span>
-              <span class="chip">Testing</span>
-            </div>
-          </a>
-
-          <a
-            class="project-card"
-            href="https://github.com/zhihaochen67/hybridsearch-bench"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="project-card" href="https://github.com/zhihaochen67/hybridsearch-bench" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🔎</div>
               <span class="project-link">GitHub ↗</span>
             </div>
             <h3>HybridSearch-Bench</h3>
             <p>
-              Reproducible benchmark for BM25, dense retrieval, hybrid fusion,
-              neural reranking, and FAISS ANN tradeoffs, with retrieval quality
-              and latency evaluation.
+              End-to-end benchmark for BM25, dense retrieval, hybrid fusion,
+              neural reranking, and FAISS ANN with explicit quality/latency analysis.
             </p>
+            <p class="result">SciFact hybrid + rerank: <strong>0.6998 nDCG@10</strong>; validated on FiQA.</p>
             <div class="project-tags">
               <span class="chip">BM25</span>
               <span class="chip">Dense Retrieval</span>
@@ -748,21 +659,16 @@
             </div>
           </a>
 
-          <a
-            class="project-card"
-            href="https://github.com/zhihaochen67/AgentLab"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="project-card" href="https://github.com/zhihaochen67/AgentLab" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🔬</div>
               <span class="project-link">GitHub ↗</span>
             </div>
             <h3>AgentLab</h3>
             <p>
-              Evaluation and observability platform for LLM agents with
-              reproducible benchmarks, structured traces, repeated trials,
-              experiment comparison, and LLM-as-a-Judge.
+              Evaluation and observability infrastructure for LLM agents with isolated
+              workspaces, deterministic verification, structured traces, repeated trials,
+              experiment comparison, SQLite persistence, and LLM-as-a-Judge.
             </p>
             <div class="project-tags">
               <span class="chip">Evaluation</span>
@@ -772,22 +678,18 @@
             </div>
           </a>
 
-          <a
-            class="project-card"
-            href="https://github.com/zhihaochen67/mcp-toolhub"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="project-card" href="https://github.com/zhihaochen67/mcp-toolhub" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🔧</div>
               <span class="project-link">GitHub ↗</span>
             </div>
             <h3>MCP ToolHub</h3>
             <p>
-              Security-focused MCP server with approval-gated execution,
-              workspace isolation, hardened filesystem and Git tools,
-              process containment, and structured audit logging.
+              Security-focused MCP execution gateway with out-of-band human approval,
+              workspace confinement, immutable expiring single-use requests,
+              and structured audit traces.
             </p>
+            <p class="result">Production surface: <strong>14 MCP tools</strong>.</p>
             <div class="project-tags">
               <span class="chip">MCP</span>
               <span class="chip">Security</span>
@@ -796,21 +698,55 @@
             </div>
           </a>
 
-          <a
-            class="project-card"
-            href="https://github.com/zhihaochen67/embodied-manipulation-agent"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="project-card" href="https://github.com/zhihaochen67/repo-doctor" target="_blank" rel="noopener noreferrer">
+            <div class="project-top">
+              <div class="project-icon">🩺</div>
+              <span class="project-link">GitHub ↗</span>
+            </div>
+            <h3>Repo Doctor</h3>
+            <p>
+              Local-first repository diagnosis and AI repair agent with constrained patching,
+              verification, rollback, and optional MCP execution.
+            </p>
+            <p class="result">v0.3.0: <strong>227 tests passed</strong>, 5 skipped; self-scan <strong>100/100</strong>.</p>
+            <div class="project-tags">
+              <span class="chip">Python</span>
+              <span class="chip">LLM Agents</span>
+              <span class="chip">MCP</span>
+              <span class="chip">Testing</span>
+            </div>
+          </a>
+
+          <a class="project-card" href="https://github.com/zhihaochen67/harness-core" target="_blank" rel="noopener noreferrer">
+            <div class="project-top">
+              <div class="project-icon">🖥️</div>
+              <span class="project-link">GitHub ↗</span>
+            </div>
+            <h3>Harness Core</h3>
+            <p>
+              AI-native Electron desktop command center for workspace-aware AI development,
+              agent activity, terminal output, GPU/WSL tooling, execution state,
+              and DeepSeek Harness orchestration.
+            </p>
+            <div class="project-tags">
+              <span class="chip">Electron</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">AI Systems</span>
+              <span class="chip">Desktop</span>
+            </div>
+          </a>
+
+          <a class="project-card" href="https://github.com/zhihaochen67/embodied-manipulation-agent" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🦾</div>
               <span class="project-link">GitHub ↗</span>
             </div>
             <h3>Embodied Manipulation Agent</h3>
             <p>
-              Deterministic PyBullet manipulation agent with RGB-D grounding,
-              closed-loop verification, structured diagnostics, and bounded recovery.
+              Deterministic PyBullet pick-and-place agent with RGB-D grounding,
+              fresh visual verification, structured diagnosis, and one bounded recovery attempt.
             </p>
+            <p class="result">Frozen perturbation benchmark: <strong>96/100 grasp</strong>, <strong>100/100 placement</strong>.</p>
             <div class="project-tags">
               <span class="chip">Embodied AI</span>
               <span class="chip">Manipulation</span>
@@ -819,23 +755,18 @@
             </div>
           </a>
 
-          <a
-            class="project-card"
-            href="https://github.com/zhihaochen67/socialnav-bench"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="project-card" href="https://github.com/zhihaochen67/socialnav-bench" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🤖</div>
               <span class="project-link">GitHub ↗</span>
             </div>
             <h3>SocialNav-Bench</h3>
             <p>
-              Reproducible benchmark for socially-aware robot navigation with
-              predictive and space-time planning, robust continuous execution,
-              multi-pedestrian evaluation, local safety shielding, and
-              systematic failure analysis.
+              Reproducible benchmark for socially-aware robot navigation with predictive
+              planning, robust continuous execution, multi-pedestrian evaluation,
+              local safety shielding, and failure analysis.
             </p>
+            <p class="result">Collision rate: <strong>18%→0%</strong> (N=3), <strong>23%→1%</strong> (N=5), <strong>43%→7%</strong> (N=10).</p>
             <div class="project-tags">
               <span class="chip">Social Navigation</span>
               <span class="chip">Path Planning</span>
@@ -844,51 +775,23 @@
             </div>
           </a>
 
-          <a
-            class="project-card"
-            href="https://github.com/zhihaochen67/mini-gpt"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="project-card" href="https://github.com/zhihaochen67/mini-gpt" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🧠</div>
               <span class="project-link">GitHub ↗</span>
             </div>
             <h3>MiniGPT</h3>
             <p>
-              97.5M-parameter decoder-only Transformer implemented from scratch
-              with PyTorch and trained on TinyStories, covering tokenization,
-              training, checkpointing, and autoregressive generation.
+              97.54M-parameter decoder-only Transformer implemented from scratch with PyTorch
+              and trained on TinyStories, covering tokenization, training, checkpointing,
+              and autoregressive generation.
             </p>
+            <p class="result">Best held-out validation loss: <strong>1.2654</strong>.</p>
             <div class="project-tags">
               <span class="chip">PyTorch</span>
               <span class="chip">Transformer</span>
               <span class="chip">TinyStories</span>
               <span class="chip">Deep Learning</span>
-            </div>
-          </a>
-
-          <a
-            class="project-card"
-            href="https://github.com/zhihaochen67/harness-core"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div class="project-top">
-              <div class="project-icon">🖥️</div>
-              <span class="project-link">GitHub ↗</span>
-            </div>
-            <h3>Harness Core</h3>
-            <p>
-              AI-native desktop command center integrating workspace-aware AI,
-              agent activity, terminal output, system tooling, execution state,
-              and desktop orchestration.
-            </p>
-            <div class="project-tags">
-              <span class="chip">Electron</span>
-              <span class="chip">JavaScript</span>
-              <span class="chip">AI Systems</span>
-              <span class="chip">Desktop</span>
             </div>
           </a>
         </div>
@@ -942,7 +845,8 @@
           <div>
             <h2>Let's connect.</h2>
             <p>
-              Explore my projects and current work on GitHub.
+              For internship opportunities or technical conversations, explore my current work
+              on GitHub. Direct contact details are included in my application materials.
             </p>
           </div>
 
