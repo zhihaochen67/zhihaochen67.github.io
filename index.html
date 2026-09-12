@@ -395,6 +395,66 @@
       gap: 7px;
     }
 
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .demo-card {
+      display: flex;
+      flex-direction: column;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .demo-video {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface-solid);
+    }
+
+    .demo-video video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+    }
+
+    .demo-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 18px 6px 2px;
+    }
+
+    .demo-meta h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .demo-meta p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .demo-link {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 650;
+    }
+
+    .demo-link:hover {
+      color: var(--primary);
+    }
+
     .skills {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -478,7 +538,8 @@
       }
 
       .about-grid,
-      .projects-grid {
+      .projects-grid,
+      .demo-grid {
         grid-template-columns: 1fr;
       }
 
@@ -511,6 +572,7 @@
 
       .panel,
       .project-card,
+      .demo-card,
       .contact-card {
         padding: 22px;
       }
@@ -541,6 +603,7 @@
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#demos">Demos</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </div>
@@ -812,6 +875,67 @@
               <span class="chip">Desktop</span>
             </div>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="demos">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-label">Project Demos</div>
+          <h2>See the systems in action.</h2>
+          <p>
+            Short demonstrations of selected projects, showing how the systems behave
+            beyond static descriptions and metrics.
+          </p>
+        </div>
+
+        <div class="demo-grid">
+          <article class="demo-card">
+            <div class="demo-video">
+              <video controls preload="metadata" playsinline src="assets/demos/mcp-toolhub-demo.mp4">
+                Your browser does not support embedded video. View the MCP ToolHub repository on GitHub instead.
+              </video>
+            </div>
+            <div class="demo-meta">
+              <h3>MCP ToolHub</h3>
+              <p>
+                Human-approved MCP execution with secure tool access, single-use requests,
+                and structured audit logging.
+              </p>
+              <a
+                class="demo-link"
+                href="https://github.com/zhihaochen67/mcp-toolhub"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub ↗
+              </a>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-video">
+              <video controls preload="metadata" playsinline src="assets/demos/socialnav-bench-demo.mp4">
+                Your browser does not support embedded video. View the SocialNav-Bench repository on GitHub instead.
+              </video>
+            </div>
+            <div class="demo-meta">
+              <h3>SocialNav-Bench</h3>
+              <p>
+                Predictive safety shielding for socially-aware navigation in dynamic
+                multi-pedestrian scenes.
+              </p>
+              <a
+                class="demo-link"
+                href="https://github.com/zhihaochen67/socialnav-bench"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub ↗
+              </a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
