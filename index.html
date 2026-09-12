@@ -15,6 +15,7 @@
   <meta property="og:type" content="website" />
 
   <title>Zhihao Chen | AI Systems, Agents & Search</title>
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon.png" />
 
   <style>
     :root {
@@ -27,6 +28,9 @@
       --primary: #2563eb;
       --primary-soft: rgba(37, 99, 235, 0.10);
       --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 24px 56px rgba(15, 23, 42, 0.13);
+      --shadow-soft-hover: 0 18px 42px rgba(15, 23, 42, 0.10);
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
       --max-width: 1120px;
     }
 
@@ -41,6 +45,8 @@
         --primary: #60a5fa;
         --primary-soft: rgba(96, 165, 250, 0.12);
         --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+        --shadow-hover: 0 24px 56px rgba(0, 0, 0, 0.40);
+        --shadow-soft-hover: 0 18px 42px rgba(0, 0, 0, 0.32);
       }
     }
 
@@ -63,11 +69,32 @@
         "Segoe UI",
         sans-serif;
       color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+
+    /* Slow, barely noticeable background drift. The existing gradients move
+       to a fixed pseudo-element so the animation stays a cheap composited
+       transform and never repaints or reflows page content. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -16px;
+      z-index: -1;
+      pointer-events: none;
       background:
         radial-gradient(circle at 15% -10%, rgba(37, 99, 235, 0.14), transparent 34%),
-        radial-gradient(circle at 90% 15%, rgba(124, 58, 237, 0.10), transparent 28%),
-        var(--bg);
-      line-height: 1.65;
+        radial-gradient(circle at 90% 15%, rgba(124, 58, 237, 0.10), transparent 28%);
+      animation: bg-drift 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes bg-drift {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+      to {
+        transform: translate3d(10px, 8px, 0);
+      }
     }
 
     a {
@@ -124,6 +151,11 @@
 
     .nav-links a:hover {
       color: var(--text);
+    }
+
+    .nav-links a.active {
+      color: var(--primary);
+      font-weight: 600;
     }
 
     main {
@@ -199,13 +231,18 @@
       font-weight: 650;
       font-size: 0.94rem;
       transition:
-        transform 0.2s ease,
+        transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
         border-color 0.2s ease,
         background 0.2s ease;
     }
 
     .button:hover {
       transform: translateY(-2px);
+    }
+
+    .button:active {
+      transform: translateY(0);
+      transition-duration: 0.08s;
     }
 
     .button-primary {
@@ -241,6 +278,65 @@
       height: 100%;
       object-fit: cover;
       border-radius: 29%;
+    }
+
+    /* Hero entrance: fade + small rise with a soft stagger. No bounce. */
+    .hero .eyebrow {
+      animation: hero-enter 0.55s var(--ease-out) both;
+    }
+
+    .hero h1 {
+      animation: hero-enter 0.55s var(--ease-out) both;
+      animation-delay: 70ms;
+    }
+
+    .hero-description {
+      animation: hero-enter 0.55s var(--ease-out) both;
+      animation-delay: 150ms;
+    }
+
+    .availability {
+      animation: hero-enter 0.55s var(--ease-out) both;
+      animation-delay: 230ms;
+    }
+
+    .hero-actions {
+      animation: hero-enter 0.55s var(--ease-out) both;
+      animation-delay: 310ms;
+    }
+
+    .hero-visual {
+      animation: hero-enter 0.55s var(--ease-out) both;
+      animation-delay: 230ms;
+    }
+
+    .avatar-shell {
+      animation: avatar-enter 0.55s var(--ease-out) both;
+      animation-delay: 230ms;
+    }
+
+    @keyframes hero-enter {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Keeps the existing rotate(2deg) in both keyframes so the resting
+       look after the entrance is exactly the same as before. */
+    @keyframes avatar-enter {
+      from {
+        opacity: 0;
+        transform: rotate(2deg) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: rotate(2deg) scale(1);
+      }
     }
 
     section {
@@ -283,6 +379,16 @@
       border-radius: 20px;
       background: var(--surface);
       box-shadow: var(--shadow);
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+    }
+
+    .panel:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--primary) 22%, var(--border));
+      box-shadow: var(--shadow-soft-hover);
     }
 
     .panel h3 {
@@ -332,13 +438,15 @@
       background: var(--surface);
       box-shadow: var(--shadow);
       transition:
-        transform 0.22s ease,
-        border-color 0.22s ease;
+        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
     }
 
     .project-card:hover {
       transform: translateY(-4px);
       border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
+      box-shadow: var(--shadow-hover);
     }
 
     .project-top {
@@ -409,6 +517,16 @@
       border-radius: 20px;
       background: var(--surface);
       box-shadow: var(--shadow);
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--primary) 24%, var(--border));
+      box-shadow: var(--shadow-soft-hover);
     }
 
     .demo-video {
@@ -466,6 +584,17 @@
       border: 1px solid var(--border);
       border-radius: 18px;
       background: var(--surface);
+      box-shadow: var(--shadow);
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .skill-group:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--primary) 22%, var(--border));
+      box-shadow: var(--shadow-soft-hover);
     }
 
     .skill-group h3 {
@@ -582,14 +711,69 @@
       }
     }
 
+    /* Scroll reveal. Hidden only while the `js` class is present, so content
+       stays fully visible and usable without JavaScript. */
+    .js [data-reveal] {
+      opacity: 0;
+      translate: 0 16px;
+      visibility: hidden;
+    }
+
+    .js [data-reveal].is-visible {
+      opacity: 1;
+      translate: 0 0;
+      visibility: visible;
+      animation: reveal-in 0.5s var(--ease-out) both;
+      animation-delay: var(--reveal-delay, 0ms);
+    }
+
+    @keyframes reveal-in {
+      from {
+        opacity: 0;
+        translate: 0 16px;
+        visibility: hidden;
+      }
+      to {
+        opacity: 1;
+        translate: 0 0;
+        visibility: visible;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
       *::after {
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
         animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
         animation-iteration-count: 1 !important;
+      }
+
+      body::before {
+        animation: none;
+      }
+
+      .js [data-reveal] {
+        opacity: 1 !important;
+        translate: none !important;
+        visibility: visible !important;
+      }
+
+      .panel:hover,
+      .demo-card:hover,
+      .skill-group:hover {
+        transform: none !important;
+      }
+    }
+
+    @media print {
+      .js [data-reveal] {
+        opacity: 1 !important;
+        translate: none !important;
+        visibility: visible !important;
       }
     }
   </style>
@@ -671,7 +855,7 @@
 
     <section id="about">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading" data-reveal>
           <div class="section-label">About</div>
           <h2>Building reliable AI systems.</h2>
           <p>
@@ -681,7 +865,7 @@
         </div>
 
         <div class="about-grid">
-          <div class="panel">
+          <div class="panel" data-reveal>
             <h3>Computer Science @ NJUPT</h3>
             <p>
               Undergraduate student in Computer Science, building foundations across
@@ -689,7 +873,7 @@
             </p>
           </div>
 
-          <div class="panel">
+          <div class="panel" data-reveal>
             <h3>Focus: AI Systems &amp; Agents</h3>
             <p>
               I focus on practical AI engineering across agent evaluation, secure tool execution,
@@ -702,12 +886,12 @@
 
     <section id="experience">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading" data-reveal>
           <div class="section-label">Experience</div>
           <h2>Research experience.</h2>
         </div>
 
-        <div class="panel">
+        <div class="panel" data-reveal>
           <h3>Research Intern · IAII</h3>
           <p>
             Working in an embodied AI research group on social navigation,
@@ -726,7 +910,7 @@
 
     <section id="projects">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading" data-reveal>
           <div class="section-label">Featured Projects</div>
           <h2>Selected work.</h2>
           <p>
@@ -737,7 +921,7 @@
 
         <div class="projects-grid">
 
-          <a class="project-card" href="https://github.com/zhihaochen67/AgentLab" target="_blank" rel="noopener noreferrer">
+          <a class="project-card" data-reveal href="https://github.com/zhihaochen67/AgentLab" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🔬</div>
               <span class="project-link">GitHub ↗</span>
@@ -756,7 +940,7 @@
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/zhihaochen67/mcp-toolhub" target="_blank" rel="noopener noreferrer">
+          <a class="project-card" data-reveal href="https://github.com/zhihaochen67/mcp-toolhub" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🔧</div>
               <span class="project-link">GitHub ↗</span>
@@ -776,7 +960,7 @@
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/zhihaochen67/repo-doctor" target="_blank" rel="noopener noreferrer">
+          <a class="project-card" data-reveal href="https://github.com/zhihaochen67/repo-doctor" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🩺</div>
               <span class="project-link">GitHub ↗</span>
@@ -794,7 +978,7 @@
               <span class="chip">Testing</span>
             </div>
           </a>
-          <a class="project-card" href="https://github.com/zhihaochen67/hybridsearch-bench" target="_blank" rel="noopener noreferrer">
+          <a class="project-card" data-reveal href="https://github.com/zhihaochen67/hybridsearch-bench" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🔎</div>
               <span class="project-link">GitHub ↗</span>
@@ -813,7 +997,7 @@
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/zhihaochen67/socialnav-bench" target="_blank" rel="noopener noreferrer">
+          <a class="project-card" data-reveal href="https://github.com/zhihaochen67/socialnav-bench" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🤖</div>
               <span class="project-link">GitHub ↗</span>
@@ -833,7 +1017,7 @@
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/zhihaochen67/embodied-manipulation-agent" target="_blank" rel="noopener noreferrer">
+          <a class="project-card" data-reveal href="https://github.com/zhihaochen67/embodied-manipulation-agent" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🦾</div>
               <span class="project-link">GitHub ↗</span>
@@ -852,7 +1036,7 @@
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/zhihaochen67/mini-gpt" target="_blank" rel="noopener noreferrer">
+          <a class="project-card" data-reveal href="https://github.com/zhihaochen67/mini-gpt" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🧠</div>
               <span class="project-link">GitHub ↗</span>
@@ -872,7 +1056,7 @@
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/zhihaochen67/harness-core" target="_blank" rel="noopener noreferrer">
+          <a class="project-card" data-reveal href="https://github.com/zhihaochen67/harness-core" target="_blank" rel="noopener noreferrer">
             <div class="project-top">
               <div class="project-icon">🖥️</div>
               <span class="project-link">GitHub ↗</span>
@@ -896,7 +1080,7 @@
 
     <section id="demos">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading" data-reveal>
           <div class="section-label">Project Demos</div>
           <h2>See the systems in action.</h2>
           <p>
@@ -906,7 +1090,7 @@
         </div>
 
         <div class="demo-grid">
-          <article class="demo-card">
+          <article class="demo-card" data-reveal>
             <div class="demo-video">
               <video controls preload="metadata" playsinline src="assets/demos/socialnav-bench-demo.mp4">
                 Your browser does not support embedded video. View the SocialNav-Bench repository on GitHub instead.
@@ -929,7 +1113,7 @@
             </div>
           </article>
 
-          <article class="demo-card">
+          <article class="demo-card" data-reveal>
             <div class="demo-video">
               <video controls preload="metadata" playsinline src="assets/demos/embodied-manipulation-demo.mp4">
                 Your browser does not support embedded video. View the Embodied Manipulation Agent repository on GitHub instead.
@@ -952,7 +1136,7 @@
             </div>
           </article>
 
-          <article class="demo-card">
+          <article class="demo-card" data-reveal>
             <div class="demo-video">
               <video controls preload="metadata" playsinline src="assets/demos/mcp-toolhub-demo.mp4">
                 Your browser does not support embedded video. View the MCP ToolHub repository on GitHub instead.
@@ -975,7 +1159,7 @@
             </div>
           </article>
 
-          <article class="demo-card">
+          <article class="demo-card" data-reveal>
             <div class="demo-video">
               <video controls preload="metadata" playsinline src="assets/demos/harness-core-demo.mp4">
                 Your browser does not support embedded video. View the Harness Core repository on GitHub instead.
@@ -1003,28 +1187,28 @@
 
     <section id="skills">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading" data-reveal>
           <div class="section-label">Tech Stack</div>
           <h2>Tools I work with.</h2>
         </div>
 
         <div class="skills">
-          <div class="skill-group">
+          <div class="skill-group" data-reveal>
             <h3>Languages</h3>
             <p>Python · C++ (basic)</p>
           </div>
 
-          <div class="skill-group">
+          <div class="skill-group" data-reveal>
             <h3>AI / Agents</h3>
             <p>PyTorch · LLM Agents · MCP · Agent Evaluation</p>
           </div>
 
-          <div class="skill-group">
+          <div class="skill-group" data-reveal>
             <h3>Engineering</h3>
             <p>Linux · Git · pytest</p>
           </div>
 
-          <div class="skill-group">
+          <div class="skill-group" data-reveal>
             <h3>Robotics</h3>
             <p>PyBullet · Social Navigation · Robotic Manipulation</p>
           </div>
@@ -1034,7 +1218,7 @@
 
     <section id="contact">
       <div class="container">
-        <div class="contact-card">
+        <div class="contact-card" data-reveal>
           <div>
             <h2>Let's connect.</h2>
             <p>
@@ -1062,5 +1246,108 @@
       <span>Nanjing, China</span>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var reduceMotion =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var items = Array.prototype.slice.call(
+        document.querySelectorAll("[data-reveal]")
+      );
+
+      // Progressive enhancement: without IntersectionObserver (or under
+      // reduced motion) everything stays visible with no animation.
+      if (!("IntersectionObserver" in window) || reduceMotion) {
+        items.forEach(function (el) {
+          el.classList.add("is-visible");
+        });
+        return;
+      }
+
+      document.documentElement.classList.add("js");
+
+      // Subtle 60ms stagger between neighboring cards in a group.
+      items.forEach(function (el) {
+        var siblings = Array.prototype.filter.call(
+          el.parentElement.children,
+          function (child) {
+            return child.hasAttribute("data-reveal");
+          }
+        );
+        var index = siblings.indexOf(el);
+        if (index > 0) {
+          el.style.setProperty("--reveal-delay", index * 60 + "ms");
+        }
+      });
+
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -64px 0px", threshold: 0 }
+      );
+
+      items.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var links = Array.prototype.slice.call(
+        document.querySelectorAll('.nav-links a[href^="#"]')
+      );
+      var sections = [];
+      var inBand = {};
+
+      if ("IntersectionObserver" in window && links.length) {
+        links.forEach(function (link) {
+          var section = document.getElementById(link.getAttribute("href").slice(1));
+          if (section) {
+            sections.push({ link: link, section: section });
+            inBand[section.id] = false;
+          }
+        });
+      }
+
+      if (!sections.length) return;
+
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            inBand[entry.target.id] = entry.isIntersecting;
+          });
+
+          // The last section (in document order) inside the reading band wins.
+          var active = null;
+          sections.forEach(function (item) {
+            if (inBand[item.section.id]) active = item;
+          });
+
+          sections.forEach(function (item) {
+            var isActive = item === active;
+            item.link.classList.toggle("active", isActive);
+            if (isActive) {
+              item.link.setAttribute("aria-current", "true");
+            } else {
+              item.link.removeAttribute("aria-current");
+            }
+          });
+        },
+        { rootMargin: "-30% 0px -50% 0px", threshold: 0 }
+      );
+
+      sections.forEach(function (item) {
+        observer.observe(item.section);
+      });
+    })();
+  </script>
 </body>
 </html>
