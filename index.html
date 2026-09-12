@@ -75,6 +75,12 @@
       text-decoration: none;
     }
 
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--primary) 35%, transparent);
+      outline-offset: 3px;
+    }
+
     .container {
       width: min(calc(100% - 40px), var(--max-width));
       margin: 0 auto;
@@ -513,6 +519,17 @@
         flex-direction: column;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
   </style>
 </head>
 
@@ -542,7 +559,8 @@
           </h1>
 
           <p class="hero-description">
-            Computer Science undergraduate at NJUPT and research intern at IAII.
+            Computer Science undergraduate at NJUPT and research intern at the
+            Institute of Industrial Artificial Intelligence, CAS (IAII).
             I build LLM agent, retrieval, and evaluation systems, with additional
             work in embodied AI.
           </p>
@@ -594,10 +612,10 @@
           </div>
 
           <div class="panel">
-            <h3>Year-long Research Internship @ IAII</h3>
+            <h3>Focus: AI Systems &amp; Agents</h3>
             <p>
-              Research intern in an embodied AI group in Nanjing, working on
-              robotics-oriented experimentation, evaluation, and research engineering.
+              I focus on practical AI engineering across agent evaluation, secure tool execution,
+              search and retrieval, and embodied intelligence.
             </p>
           </div>
         </div>
@@ -634,8 +652,8 @@
           <div class="section-label">Featured Projects</div>
           <h2>Selected work.</h2>
           <p>
-            Eight projects spanning retrieval, agent evaluation, secure tool execution,
-            AI coding systems, desktop orchestration, embodied AI, and model implementation.
+            Eight projects spanning agent evaluation, secure tool execution, AI coding systems,
+            search and retrieval, embodied AI, and model implementation.
           </p>
         </div>
 
@@ -817,13 +835,13 @@
           </div>
 
           <div class="skill-group">
-            <h3>Search / Retrieval</h3>
-            <p>BM25 · Dense Retrieval · Hybrid Search · Reranking · FAISS</p>
+            <h3>Agent Systems</h3>
+            <p>MCP · Tool Calling · LLM-as-a-Judge · Agent Evaluation · Observability</p>
           </div>
 
           <div class="skill-group">
-            <h3>Agent Systems</h3>
-            <p>MCP · Tool Calling · LLM-as-a-Judge · Agent Evaluation · Observability</p>
+            <h3>Search / Retrieval</h3>
+            <p>BM25 · Dense Retrieval · Hybrid Search · Reranking · FAISS</p>
           </div>
 
           <div class="skill-group">
